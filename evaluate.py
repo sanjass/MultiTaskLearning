@@ -1,13 +1,14 @@
 import argparse
-import openai
+# import openai
 import os
 import numpy as np
 import pandas as pd
 import time
+from transformers import pipeline
 
 from crop import crop
 
-openai.api_key = "INSERTYOURKEYHERE"
+# openai.api_key = "INSERTYOURKEYHERE"
 choices = ["A", "B", "C", "D"]
 
 
@@ -48,6 +49,9 @@ def eval(args, subject, engine, dev_df, test_df):
     all_probs = []
     answers = choices[:test_df.shape[1]-2]
 
+    nlp = pipeline('fill-mask') # put t5 model here
+    print(f"MODEL: {nlp.model}")
+
     for i in range(test_df.shape[0]):
         # get prompt and make sure it fits
         k = args.ntrain
@@ -64,38 +68,48 @@ def eval(args, subject, engine, dev_df, test_df):
 
         while True:
             try:
-                c = openai.Completion.create(
-                    engine=engine,
-                    prompt=prompt,
-                    max_tokens=1,
-                    logprobs=100,
-                    temperature=0,
-                    echo=True
-                )
+                print(f"PROMPT: {prompt}")
+                c = nlp(prompt+str(nlp.tokenizer.mask_token))
+                print(f"RESULT: {[[ca['score'],ca['token_str']] for ca in c]}")
+                c = sorted(c, key=lambda x: x['score'], reverse=True)
+
+                # c = openai.Completion.create(
+                #     engine=engine,
+                #     prompt=prompt,
+                #     max_tokens=1,
+                #     logprobs=100,
+                #     temperature=0,
+                #     echo=True
+                # )
                 break
-            except:
+            except Exception as e:
+                print(e)
                 print("pausing")
                 time.sleep(1)
                 continue
 
-        lprobs = []
-        for ans in answers:
-            try:
-                lprobs.append(c["choices"][0]["logprobs"]["top_logprobs"][-1][" {}".format(ans)])
-            except:
-                print("Warning: {} not found. Artificially adding log prob of -100.".format(ans))
-                lprobs.append(-100)
-        pred = {0: "A", 1: "B", 2: "C", 3: "D"}[np.argmax(lprobs)]
-        probs = softmax(np.array(lprobs))
+        # lprobs = []
+        # for ans in answers:
+        #     try:
+        #         #lprobs.append(c["choices"][0]["logprobs"]["top_logprobs"][-1][" {}".format(ans)])
+        #         lprobs.append(c[])
+        #     except:
+        #         print("Warning: {} not found. Artificially adding log prob of -100.".format(ans))
+        #         lprobs.append(-100)
+        # pred = {0: "A", 1: "B", 2: "C", 3: "D"}[np.argmax(lprobs)]
+        # probs = softmax(np.array(lprobs))
+        pred = c[0]["token_str"]
+        print("PRED: ", pred)
 
         cor = pred == label
         cors.append(cor)
-        all_probs.append(probs)
+        #all_probs.append(probs)
 
     acc = np.mean(cors)
     cors = np.array(cors)
 
-    all_probs = np.array(all_probs)
+    #all_probs = np.array(all_probs)
+    all_probs = 0
     print("Average accuracy {:.3f} - {}".format(acc, subject))
 
     return cors, acc, all_probs
