@@ -8,11 +8,11 @@ from transformers.modeling_t5 import load_tf_weights_in_t5
 from tqdm import tqdm
 
 
-data_dir = "../data"
+data_dir = "./data"
 subjects = sorted([f.split("_test.csv")[0] for f in os.listdir(os.path.join(data_dir, "test")) if "_test.csv" in f])
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-base_model = "t5-base"
+base_model = "t5-large"
 tokenizer = T5Tokenizer.from_pretrained(base_model)
 
 
@@ -128,13 +128,14 @@ def gen_prompt(train_df, subject, k=-1):
 
 kshots = 0
 all_scores = []
-for subject_i, subject in tqdm(enumerate(subjects)):
+for subject_i, subject in enumerate(subjects):
+    print(f"Subject: {subject}, index {subject_i} out of {len(subjects)}")
     model = get_model(subject, subject_i, kshots)
     dev_df = pd.read_csv(os.path.join(data_dir, "val", subject + "_val.csv"), header=None)
     test_df = pd.read_csv(os.path.join(data_dir, "test", subject + "_test.csv"), header=None)
 
     correct = 0
-    for i in range(test_df.shape[0]):
+    for i in tqdm(range(test_df.shape[0])):
     # for i in range(1):    
         prompt_end, answers = format_example(test_df, i, include_answer=False)
         train_prompt = gen_prompt(dev_df, subject, kshots)
