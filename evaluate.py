@@ -69,7 +69,7 @@ def eval(args, subject, engine, dev_df, test_df):
         while True:
             try:
                 print(f"PROMPT: {prompt}")
-                c = nlp(prompt+str(nlp.tokenizer.mask_token))
+                c = nlp(prompt+" "+str(nlp.tokenizer.mask_token))
                 print(f"RESULT: {[[ca['score'],ca['token_str']] for ca in c]}")
                 c = sorted(c, key=lambda x: x['score'], reverse=True)
 
