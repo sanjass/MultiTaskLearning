@@ -1,4 +1,4 @@
 data/*
 models/*
 results/*
-unifiedQA/model-*/*
+unifiedQA/model*
