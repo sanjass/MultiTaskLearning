@@ -13,16 +13,16 @@ def return_data(train_id, test_id):
     train_data = []
     test_data = []
     test_answers = []
-    for theta_a, theta_b in [(1, 1), (0, 0), (1, 0), (0, 1), (1, 2), (2, 1), (8, 4), (4, 5), (3, 4)]:
-        for theta_0 in [0.5, 0, 0.25, 0.25, 1, 6, 18, 3]:
-            for x_a, x_b in [(1, 1), (0, 0), (1, 0), (0, 1)]:
+    for theta_a, theta_b in [(1, 1), (0, 0), (-1, 0), (0, 1), (1, 2), (2, 1), (8, 4), (4, 5), (3, 4)]:
+        for theta_0 in [0.5, 0, 0.25, 0.25, 1, -6, 6, 18, 3]:
+            for x_a, x_b in [(1, 1), (0, 0), (1, 0), (0, 1), (-1, 0)]:
 
                 answer = (x_a * theta_a + x_b * theta_b) + theta_0
 
                 #make sure there are no spaces in the formula
-                formula = "(({x_a:.2f}*{theta_a:.2f})+({x_b:.2f}*{theta_b:.2f}))+{theta_0:.2f}"
+                formula = "(({x_a}*{theta_a})+({x_b}*{theta_b}))+{theta_0}"
                 formula = formula.format(x_a = x_a, x_b = x_b, theta_a = theta_a, theta_b = theta_b, theta_0 = theta_0)
-                question = "x = ( {x_a:.2f} , {x_b:.2f} ) , theta = ( {theta_a:.2f} , {theta_b:.2f} ) and theta_0 = {theta_0:.2f} . What is the value of theta times x plus theta_0 ?"
+                question = "x = ( {x_a} , {x_b} ) , theta = ( {theta_a} , {theta_b} ) and theta_0 = {theta_0} . What is the value of theta times x plus theta_0 ?"
                 question = question.format(x_a = x_a, x_b = x_b, theta_a = theta_a, theta_b = theta_b, theta_0 = theta_0)
                 quant_cell_positions = get_quant_cells(question)
 

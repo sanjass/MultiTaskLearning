@@ -3,13 +3,15 @@ import random
 import logisticregression as lg1
 import gradientdescent as gd1
 import gradientdescent2 as gd2
+import filtering as f1
+import filtering2 as f2
 
 train_id = 0
 test_id = 0
 train_data = []
 test_data = []
 test_answers = []
-modules = [lg1, gd1, gd2]
+modules = [lg1, gd1, gd2, f1, f2]
 
 def get_and_update(mod, train_id, test_id, train_data, test_data, test_answers):
     train, test, answers = mod.return_data(train_id, test_id)

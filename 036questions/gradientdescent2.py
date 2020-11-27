@@ -1,4 +1,4 @@
-#if f(theta) = ({c1:.2f}*theta+{c2:.2f}) squared and theta = {theta_a:.2f} and eta = {eta:2f} what is theta after gradient descent ?
+#if f(theta) = ({c1}*theta+{c2}) squared and theta = {theta_a} and eta = {eta:2f} what is theta after gradient descent ?
 
 #can try this with just all of the positions? havent yet
     # quant_cell_positions = [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 23, 24, 25, 26, 27, 28, 29, 30]
@@ -8,14 +8,14 @@ def return_data(train_id, test_id):
     test_data = []
     test_answers = []
     for eta in [0.1, 0.11, 0.56, 0.05]:
-        for theta in [1, 4, 6, 9.4, 3, 15.4, 0.5, 0.23]:
+        for theta in [1, 4, -6, 9.4, 3, 15.4, 0.5, 0.23]:
             for c1 in [3, 4, 7, 10, 0.3]:
-                for c2 in [19, 3, 5, 6, 8]:
+                for c2 in [19, 3, -5, 6, 8]:
                     answer = theta - eta*2*c1*(c1*theta+c2)
                     #make sure there are no spaces in the formula
-                    formula = "{theta:.2f}-{eta:.2f}*2*{c1:.2f}*({c1:.2f}*{theta:.2f}+{c2:.2f})"
+                    formula = "{theta}-{eta}*2*{c1}*({c1}*{theta}+{c2})"
                     formula = formula.format(c1 = c1, c2 = c2, theta = theta, eta=eta)
-                    question = "f(theta) is ({c1:.2f} times theta plus {c2:.2f}) squared and theta is {theta:.2f} and eta is {eta:2f} what is theta after gd ? HINT use 2 times {c1:.2f} times theta plus 2 times {c2:.2f}"
+                    question = "f(theta) is ({c1} times theta plus {c2}) squared and theta is {theta} and eta is {eta:2f} what is theta after gd ? HINT use 2 times {c1} times theta plus 2 times {c2}"
                     question = question.format(c1 = c1, c2 = c2, theta = theta, eta=eta)
                     quant_cell_positions = get_quant_cells(question)
 
