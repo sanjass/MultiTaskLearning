@@ -16,7 +16,7 @@ def return_data(train_id, test_id):
                 #make sure there are no spaces in the formula
                 formula = "({c1}*{theta}+{c2})*({c1}*{theta}+{c2})"
                 formula = formula.format(c1 = c1, c2 = c2, theta = theta)
-                question = "if f(theta) equals {c1} times theta plus {c2} squared and theta = {theta} what is f(theta) ?"
+                question = "if f(theta) is {c1} times theta plus {c2} squared and theta is {theta} what is f(theta) ?"
                 question = question.format(c1 = c1, c2 = c2, theta = theta)
                 quant_cell_positions = get_quant_cells(question)
 

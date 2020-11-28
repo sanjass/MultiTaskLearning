@@ -22,7 +22,7 @@ def return_data(train_id, test_id):
                 #make sure there are no spaces in the formula
                 formula = "(({x_a}*{theta_a})+({x_b}*{theta_b}))+{theta_0}"
                 formula = formula.format(x_a = x_a, x_b = x_b, theta_a = theta_a, theta_b = theta_b, theta_0 = theta_0)
-                question = "x = ( {x_a} , {x_b} ) , theta = ( {theta_a} , {theta_b} ) and theta_0 = {theta_0} . What is the value of theta times x plus theta_0 ?"
+                question = "x is ( {x_a} , {x_b} ) , theta is ( {theta_a} , {theta_b} ) and theta_0 is {theta_0} . What is the value of theta times x plus theta_0 ?"
                 question = question.format(x_a = x_a, x_b = x_b, theta_a = theta_a, theta_b = theta_b, theta_0 = theta_0)
                 quant_cell_positions = get_quant_cells(question)
 
