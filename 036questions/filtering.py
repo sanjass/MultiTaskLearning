@@ -1,4 +1,11 @@
-#if I = {I} and F = {F} what is the length of the result of applying F to I?
+#if I = {I} and F = {F} what is the length of applying F to I HINT use subtraction
+
+def format_list(lst):
+    string = "[ "
+    string += " ".join(map(lambda x: str(x), lst))
+    string += " ] "
+    return string
+
 
 def return_data(train_id, test_id):
 #can try this with just all of the positions? havent yet
@@ -7,15 +14,15 @@ def return_data(train_id, test_id):
     train_data = []
     test_data = []
     test_answers = []
-    for i in [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]:
-        for f in [[-1, 0, 1], [0, 1], [1, 1, 1, -1]]:
+    for i in [[1, 2, 3, 4, 5], [1, 2, 0, 0, 0, 0], [0, 0, 0, 0, 0]]:
+        for f in [[-1, 0, 1], [0, 1], [1, 1, 1], [-1, -1], [2, 0]]:
             answer = len(i)-len(f)+1
 
             #make sure there are no spaces in the formula
             formula = "{len_I}-{len_F}+1"
             formula = formula.format(len_I = len(i), len_F = len(f))
-            question = "if I = {I} and F = {F} what is the length of the result of applying F to I ?"
-            question = question.format(I = i, F = f)
+            question = "I has length {len_I} and F has length {len_F} what is the length of the result of applying F to I"
+            question = question.format(I = format_list(i), F = format_list(f), len_I = len(i), len_F = len(f))
             quant_cell_positions = get_quant_cells(question)
 
             if count % 3 != 0:
@@ -32,4 +39,5 @@ def return_data(train_id, test_id):
     return train_data, test_data, test_answers
 
 def get_quant_cells(question):
-    return [i for i in range(len(question.split(" ")))]
+    q_split = question.split(" ")
+    return [i for i in range(len(q_split))]
