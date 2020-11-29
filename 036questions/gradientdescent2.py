@@ -26,7 +26,7 @@ def return_data(train_id, test_id):
                     else:
                         test_dict = {"quant_cell_positions": quant_cell_positions, "processed_question": question, "raw_question": question, "is_quadratic": False, "Id": test_id}
                         test_data.append(test_dict)
-                        answer_dict = {"Id": test_id, "answer": answer}
+                        answer_dict = {"Id": test_id, "answer": answer , "q_type" : "gd2"}
                         test_answers.append(answer_dict)
                         test_id += 1
                     count += 1
