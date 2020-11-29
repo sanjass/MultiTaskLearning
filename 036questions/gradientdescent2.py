@@ -8,9 +8,9 @@ def return_data(train_id, test_id):
     test_data = []
     test_answers = []
     for eta in [0.1, 0.11, 0.56, 0.05]:
-        for theta in [1, 4, -6, 9.4, 3, 15.4, 0.5, 0.23]:
+        for theta in [1, 4, -6, 9.4, 0.23]:
             for c1 in [3, 4, 7, 10, 0.3]:
-                for c2 in [19, 3, -5, 6, 8]:
+                for c2 in [3, -5]:
                     answer = theta - eta*2*c1*(c1*theta+c2)
                     #make sure there are no spaces in the formula
                     formula = "{theta}-{eta}*2*{c1}*({c1}*{theta}+{c2})"
@@ -26,7 +26,7 @@ def return_data(train_id, test_id):
                     else:
                         test_dict = {"quant_cell_positions": quant_cell_positions, "processed_question": question, "raw_question": question, "is_quadratic": False, "Id": test_id}
                         test_data.append(test_dict)
-                        answer_dict = {"Id": test_id, "answer": answer}
+                        answer_dict = {"Id": test_id, "answer": answer , "q_type" : "gd2"}
                         test_answers.append(answer_dict)
                         test_id += 1
                     count += 1

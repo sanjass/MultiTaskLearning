@@ -2,3 +2,4 @@ data/*
 models/*
 results/*
 unifiedQA/model*
+*/__pycache__/*

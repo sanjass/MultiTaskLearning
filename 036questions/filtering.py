@@ -14,8 +14,8 @@ def return_data(train_id, test_id):
     train_data = []
     test_data = []
     test_answers = []
-    for i in [[1, 2, 3, 4, 5], [1, 2, 0, 0, 0, 0], [0, 0, 0, 0, 0]]:
-        for f in [[-1, 0, 1], [0, 1], [1, 1, 1], [-1, -1], [2, 0]]:
+    for i in [[1, 2, 3, 4, 5], [1, 2, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0], [1, 1, 1], [-1, 0, -1], [0, 1, -1], [0, -1, 1, -1, 0], [0, 2, 3, 4], [-1, -1, -1, -1, -1]]:
+        for f in [[-1, 0, 1], [0, 1], [1, 1, 1], [-1, -1], [2, 0], [1], [-1], [0], [2, 2], [0, -1, -1], [-1, 1], [2, -1], [-1, 0, 0], [0, 3, -1], [7, -0.5, 0.5], [-0.5], [0.5], [0.25, -0.5], [9, 5], [9, 0, -5]]:
             answer = len(i)-len(f)+1
 
             #make sure there are no spaces in the formula
@@ -32,7 +32,7 @@ def return_data(train_id, test_id):
             else:
                 test_dict = {"quant_cell_positions": quant_cell_positions, "processed_question": question, "raw_question": question, "is_quadratic": False, "Id": test_id}
                 test_data.append(test_dict)
-                answer_dict = {"Id": test_id, "answer": answer}
+                answer_dict = {"Id": test_id, "answer": answer, "q_type" : "fil1"}
                 test_answers.append(answer_dict)
                 test_id += 1
             count += 1

@@ -13,7 +13,7 @@ def return_data(train_id, test_id):
     train_data = []
     test_data = []
     test_answers = []
-    for theta_a, theta_b in [(1, 1), (0, 0), (-1, 0), (0, 1), (1, 2), (2, 1), (8, 4), (4, 5), (3, 4)]:
+    for theta_a, theta_b in [(1, 1), (0, 0), (-1, 0), (0, 1), (1, 2)]:
         for theta_0 in [0.5, 0, 0.25, 0.25, 1, -6, 6, 18, 3]:
             for x_a, x_b in [(1, 1), (0, 0), (1, 0), (0, 1), (-1, 0)]:
 
@@ -33,7 +33,7 @@ def return_data(train_id, test_id):
                 else:
                     test_dict = {"quant_cell_positions": quant_cell_positions, "processed_question": question, "raw_question": question, "is_quadratic": False, "Id": test_id}
                     test_data.append(test_dict)
-                    answer_dict = {"Id": test_id, "answer": answer}
+                    answer_dict = {"Id": test_id, "answer": answer , "q_type" : "logreg"}
                     test_answers.append(answer_dict)
                     test_id += 1
                 count += 1
