@@ -30,7 +30,7 @@ def return_data(train_id, test_id):
                         test_answers.append(answer_dict)
                         test_id += 1
                     count += 1
-        return train_data, test_data, test_answers
+    return train_data, test_data, test_answers
 
 def get_quant_cells(question):
     return [i for i in range(len(question.split(" ")))]

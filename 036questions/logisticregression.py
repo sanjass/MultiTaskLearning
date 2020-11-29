@@ -14,7 +14,7 @@ def return_data(train_id, test_id):
     test_data = []
     test_answers = []
     for theta_a, theta_b in [(1, 1), (0, 0), (-1, 0), (0, 1), (1, 2)]:
-        for theta_0 in [0.5, 0, 0.25, 0.25, 1, -6, 6, 18, 3]:
+        for theta_0 in [0.5, 0, 0.25, 1, -6, 6, 18, 3]:
             for x_a, x_b in [(1, 1), (0, 0), (1, 0), (0, 1), (-1, 0)]:
 
                 answer = (x_a * theta_a + x_b * theta_b) + theta_0

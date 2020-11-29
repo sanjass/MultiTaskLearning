@@ -16,7 +16,7 @@ modules = [lg1, gd1, gd2, f1, f2, rnn]
 
 def get_and_update(mod, train_id, test_id, train_data, test_data, test_answers):
     train, test, answers = mod.return_data(train_id, test_id)
-    return train_id + len(train_data), test_id + len(test_data), train_data + train, test_data+test, test_answers + answers
+    return len(train_data + train), len(test_data + test), train_data + train, test_data+test, test_answers + answers
 
 for mod in modules:
     train_id, test_id, train_data, test_data, test_answers = get_and_update(mod, train_id, test_id, train_data, test_data, test_answers)
