@@ -26,8 +26,11 @@ conda env create -f env.yml
  ```
  conda activate pytorch
  ```
- 
+
 ## Codebase structure
 - `QA_huggingface.ipynb` - This is a jupyter notebook containing the code related to our QA approach with huggingface
 - `unifiedQA` - contains code necessary to do the experiments with T5 transformer. The pretrained models can be accessed on the [official unifiedQA repo](https://github.com/allenai/unifiedqa)
 
+
+##6.036 Question Generation
+To generate the train and test data navigate to the 036questions folder and run 'python3 writedata.py'.  This will generate the questions based on the other files in the directory.  To make changes to the generated questions change the numbers in these files and rerun the command. 

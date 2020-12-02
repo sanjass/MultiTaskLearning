@@ -14,7 +14,7 @@ def return_data(train_id, test_id):
     test_answers = []
     for eta in [0.1, 0.11, 0.56, 0.05]:
         for theta in [1, 4,  6, 9.4, 0.23]:
-            for c1 in [-3, 4, 7, -10, 0.3]:
+            for c1 in [3, 4, 7, 10, 0.3]:
                 for c2 in [3,  5]:
                     answer = theta - eta*2*c1*(c1*theta+c2)
                     #make sure there are no spaces in the formula
@@ -24,7 +24,7 @@ def return_data(train_id, test_id):
                     question = question.format(c1 = format_num(c1), c2 = c2, theta = theta, eta=eta)
                     quant_cell_positions = get_quant_cells(question)
 
-                    #divide the produced questions into train and test with a 2:1 ratio 
+                    #divide the produced questions into train and test with a 2:1 ratio
                     if count % 3 != 0:
                         train_dict = {"expression": formula, "quant_cell_positions": quant_cell_positions, "processed_question": question, "raw_question": question, "is_quadratic": False, "Id": train_id, "Expected": answer}
                         train_data.append(train_dict)
