@@ -30,6 +30,7 @@ conda env create -f env.yml
 ## Codebase structure
 - `QA_huggingface.ipynb` - This is a jupyter notebook containing the code related to our QA approach with huggingface
 - `unifiedQA` - contains code necessary to do the experiments with T5 transformer. The pretrained models can be accessed on the [official unifiedQA repo](https://github.com/allenai/unifiedqa)
+- `ex2_data_parsing` - takes our original data and converts the numeric questions into a format that can be used by T5 transformer presented in exercise 2. 
 
 
 ## 6.036 Question Generation
