@@ -31,7 +31,7 @@ conda env create -f env.yml
 - `QA_huggingface.ipynb` - This is a jupyter notebook containing the code related to our QA approach with huggingface
 - `unifiedQA` - contains code necessary to do the experiments with T5 transformer. The pretrained models can be accessed on the [official unifiedQA repo](https://github.com/allenai/unifiedqa)
 - `ex2_data_parsing` - takes our original data and converts the numeric questions into a format that can be used by T5 transformer presented in exercise 2. 
-
+- `ex2_for_final_project.ipynb` - This is a jupyter notebook containing code related to our T5 + GNN based on ex2. This code is mainly used to perform the experiments with our 6.036 dataset. We used google colab to run the notebook. Note that you would need to upload he `util.py` file from `exercise2` as well as the generated `train.json` and `test.json`. See "6.036 Question Generation" section for details on how to generate this dataset.
 
 ## 6.036 Question Generation
 To generate the train and test data navigate to the 036questions folder and run 'python3 writedata.py'.  This will generate the questions based on the other files in the directory.  To make changes to the generated questions change the numbers in these files and rerun the command.
